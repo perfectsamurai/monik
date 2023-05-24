@@ -1,0 +1,151 @@
+﻿@model monitoring.Dynamogram
+
+@{
+    ViewData["Title"] = "Создание трубопровода";
+}
+
+@{
+    string UserId = Context.Request.Cookies["UserId"];
+}
+
+<h1>Создать</h1>
+
+<h4>Данные трубопровода и их технических характеристик</h4>
+<hr />
+<div class="row">
+    <div class="">
+        <form asp-action="ImportFromExcel" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25">Выберите скважину</label>
+                <select id="BrigadeSelect" asp-for="WellId" class="form-control" asp-items="ViewBag.WellId">
+                    <option selected disabled="true">Выберите скважину</option>
+                </select>
+            </div>
+            <input asp-for="UserId" type="hidden" value='@UserId' class="form-control" />
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25">Выберите файл Excel</label>
+                <input type="file" name="ExcelFile" class="form-control-file" accept=".xlsx, .xls" required />
+            </div>
+            <input asp-for="UserId" type="hidden" value='@UserId' class="form-control" />
+
+            <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+                <input type="submit" value="Импортировать" class="btn btn-success me-md-2" />
+                <a asp-action="Index"> <input value="Закрыть" class="btn btn-danger" /></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button id="toggleButton" onclick="toggleDiv()" class="btn btn-success me-md-2">Ввести вручную</button>
+<div id="myDiv" class="row" style="display: none;">
+
+    <div class="">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25">Выберите скважину</label>
+                <select id="BrigadeSelect" asp-for="WellId" class="form-control" asp-items="ViewBag.WellId">
+                    <option selected disabled="true">Выберите скважину</option>
+                </select>
+            </div>
+            <input asp-for="UserId" type="hidden" value='@UserId' class="form-control" />
+
+
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25">Дебит жидкости</label>
+                <input asp-for="VarQ" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarQ" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25"> Максимальная нагрузка на головку  насосного балансира назесного привода</label>
+                <input asp-for="VarPmax" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarPmax" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label asp-for="VarPmin" class="control-label w-25">Pmin</label>
+                <input asp-for="VarPmin" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarPmin" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label asp-for="TypeDevice" class="control-label w-25">Тип прибора</label>
+                <input asp-for="TypeDevice" class="form-control" placeholder="0" />
+                <span asp-validation-for="TypeDevice" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label asp-for="VarN" class="control-label w-25">Число качаний наземного привода</label>
+                <input asp-for="VarN" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarN" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label asp-for="VarL" class="control-label w-25">Длина хода наземного привода</label>
+                <input asp-for="VarL" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarL" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25"> Кпод_нас</label>
+                <input asp-for="VarKpod" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarKpod" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25">Кнап_нас</label>
+                <input asp-for="VarKnap" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarKnap" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label class="control-label w-25">Заключение</label>
+                <input asp-for="Opinion" class="form-control" placeholder="0" />
+                <span asp-validation-for="Opinion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-flex justify-content-between mb-3">
+                <label asp-for="VarG" class="control-label w-25"></label>
+                <input asp-for="VarG" class="form-control" placeholder="0" />
+                <span asp-validation-for="VarG" class="text-danger"></span>
+            </div>
+            <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
+                <input type="submit" value="Сохранить" class="btn btn-success me-md-2" />
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#FieldSelect').select2({
+            });
+
+            $('#BrigadeSelect').select2({
+            });
+
+            $('#RegionStartIdSelect').select2({
+            });
+
+            $('#RegionEndIdSelect').select2({
+            });
+
+            $('#RegionControlIdSelect').select2({
+            });
+        });
+        function toggleDiv() {
+            var div = document.getElementById("myDiv");
+            var button = document.getElementById("toggleButton");
+
+            if (div.style.display === "none") {
+                div.style.display = "block";
+                button.textContent = "Скрыть форму";
+            } else {
+                div.style.display = "none";
+                button.textContent = "Ввести вручную";
+            }
+        }
+    </script>
+}

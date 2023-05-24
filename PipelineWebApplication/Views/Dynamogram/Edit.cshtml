@@ -1,0 +1,92 @@
+﻿
+@model monitoring.Dynamogram
+
+
+
+@{
+    ViewData["Title"] = "Редактировать";
+}
+
+<h1>Редактировать</h1>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="DynamogramId" />
+
+    <div class="form-group">
+        <label asp-for="WellId" class="control-label">Well Id:</label>
+        <input asp-for="WellId" class="form-control" />
+        <span asp-validation-for="WellId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarG" class="control-label">Var G:</label>
+        <input asp-for="VarG" class="form-control" />
+        <span asp-validation-for="VarG" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Date" class="control-label">Date:</label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarQ" class="control-label">VarQ:</label>
+        <input asp-for="VarQ" class="form-control" />
+        <span asp-validation-for="VarQ" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarPmax" class="control-label">VarPMax:</label>
+        <input asp-for="VarPmax" class="form-control" />
+        <span asp-validation-for="VarPmax" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarPmin" class="control-label">VarPMin:</label>
+        <input asp-for="VarPmin" class="form-control" />
+        <span asp-validation-for="VarPmin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TypeDevice" class="control-label">TypeDevice:</label>
+        <input asp-for="TypeDevice" class="form-control" />
+        <span asp-validation-for="TypeDevice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarN" class="control-label">VarN:</label>
+        <input asp-for="VarN" class="form-control" />
+        <span asp-validation-for="VarN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarL" class="control-label">VarL:</label>
+        <input asp-for="VarL" class="form-control" />
+        <span asp-validation-for="VarL" class="text-danger"></span>
+    </div>
+      <div class="form-group">
+        <label asp-for="VarKpod" class="control-label">VarKPod:</label>
+        <input asp-for="VarKpod" class="form-control" />
+        <span asp-validation-for="VarKpod" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VarKnap" class="control-label">VarKNap:</label>
+        <input asp-for="VarKnap" class="form-control" />
+        <span asp-validation-for="VarKnap" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Opinion" class="control-label">Opinion:</label>
+        <input asp-for="Opinion" class="form-control" />
+        <span asp-validation-for="Opinion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UserId" class="control-label">UserId:</label>
+        <input asp-for="UserId" class="form-control" />
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    
+    <!-- Add more fields here as needed -->
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-success me-md-2" />
+        <a asp-action="Index"><input value="Закрыть" class="btn btn-success" /></a>
+    </div>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

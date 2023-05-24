@@ -1,0 +1,42 @@
+﻿@using monitoring.Data
+@model IEnumerable<monitoring.Ngdu>
+
+@{
+    ViewData["Title"] = "Главная";
+
+}
+
+<h1>Данные НГДУ</h1>
+
+<p>
+    <a asp-action="Create"><button type="button" class="btn btn-success">Создать</button></a>
+</p>
+
+<div class="panel-body table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Название</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NgduId)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    
+                            <a asp-action="Edit" asp-route-id="@item.NgduId"><i class="fa fa-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.NgduId"><i class="fa fa-trash"></i></a>
+                    
+                   
+                </td>
+            </tr>
+        }
+          
+        </tbody>
+    </table>
+</div>

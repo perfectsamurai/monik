@@ -1,0 +1,117 @@
+﻿@using monitoring.Data
+@using System.Data
+@using static monitoring.Controllers.DynamogramController
+@model IEnumerable<monitoring.Advice> 
+
+
+@{
+    ViewData["Title"] = "Ошибки";
+
+}
+
+<h1>Ошибки трубопроводов</h1>
+
+
+<table class="table">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                Название НГДУ
+            </th>
+            <th>
+                Название цеха
+            </th>
+            <th>
+                Дебит жидкости(Завышен или понижен)
+            </th>
+            <th>
+                В чем ошибка
+            </th>
+            <th>
+                ID Ошибки
+            </th>
+            <th>
+                Название вышки
+            </th>
+            <th>
+               Дата добавления
+            </th>
+
+            <th>
+                Работник
+            </th>
+            <th
+            </th>
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class=".table-hover">
+
+                <td>
+                    @if (item.Dynamogram.Well.Workshop.Ngdu != null)
+                    {
+                        @item.Dynamogram.Well.Workshop.Ngdu.Name
+                    }
+                </td>
+                <td>
+                    @if (item.Dynamogram.Well.Workshop != null)
+                    {
+                        @item.Dynamogram.Well.Workshop.Name
+                    }
+                </td>
+                <td>
+                    @if (item.AdviceText != null)
+                    {
+                        @item.AdviceText.Text
+
+                    }
+                </td>
+                <td>
+                    @if (item.AdviceText != null)
+                    {
+                        @item.AdviceText.Status
+
+                    }
+                </td>
+                <td>
+                    @if (item.Dynamogram != null)
+                    {
+                        @item.Dynamogram.DynamogramId
+
+                    }
+                </td>
+                <td>
+                    @if (item.Dynamogram.Well != null)
+                    {
+                        @item.Dynamogram.Well.Name
+
+                    }
+
+                </td>
+                <td>
+                    @if (item.Dynamogram.Date != null)
+                    {
+                        @item.Dynamogram.Date
+
+                    }
+                </td>
+                <td>
+                    @if (item.Dynamogram.User != null)
+                    {
+                        @item.Dynamogram.User.FirstName @Html.Raw("&nbsp;") @item.Dynamogram.User.LastName
+
+                    }
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>

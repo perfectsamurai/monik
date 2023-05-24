@@ -1,0 +1,122 @@
+﻿@using monitoring.Data
+@model IEnumerable<monitoring.Dynamogram>
+
+@{
+    ViewData["Title"] = "Главная";
+
+}
+
+<h1>Данные трубопроводов</h1>
+
+<p>
+    <a asp-action="Create"><button type="button" class="btn btn-success">Создать</button></a>
+</p>
+<p>
+    <a href="@Url.Action("ExportToExcel")"><button type="button" class="btn btn-primary">Экспорт в Excel</button></a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                Название качалки
+            </th>
+            <th>
+                Напряжение штанговой колоны<br>(в динамике)
+            </th>
+            <th>
+               Дата добавления
+            </th>
+            <th>
+                Дебит жидкости
+            </th>
+            <th>
+                Максимальная нагрузка на головку  насосного балансира назесного привода
+            </th>
+
+            <th>
+                Pmin
+            </th>
+            <th>
+                Тип<br />прибора
+            </th>
+            <th>
+                Число качаний наземного привода
+            </th>
+            <th>
+                Длина хода наземного привода
+            </th>
+            <th>
+                Кпод_нас
+            </th>
+            <th>
+                Кнап_нас
+            </th>
+            <th>
+                Работник
+            </th>
+            <th>
+                Заключение
+            </th>
+        
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @if (item.Well != null)
+                    {
+                        @item.Well.Name
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarQ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarPmax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarPmin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeDevice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarKpod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarKnap)
+                </td>
+
+                <td>
+                    @if (item.User != null)
+                    {
+                        @item.User.FirstName @Html.Raw("&nbsp;") @item.User.LastName
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opinion)
+                </td>
+ 
+
+        </tr>
+        }
+    </tbody>
+</table>

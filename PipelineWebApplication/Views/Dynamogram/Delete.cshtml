@@ -1,0 +1,100 @@
+﻿@model monitoring.Dynamogram
+
+@{
+    ViewData["Title"] = "Удалить";
+}
+
+<h1>Delete</h1>
+
+<h3>Вы уверены, что хотите удалить это?</h3>
+<div>
+    <h4>Данные трубопровода</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WellId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WellId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarG)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarG)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarQ)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarQ)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarPmax)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarPmax)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarPmin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarPmin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TypeDevice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TypeDevice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarN)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarN)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarL)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarL)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarKpod)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarKpod)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VarKnap)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VarKnap)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Opinion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Opinion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+       
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="DynamogramId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>
